@@ -6,7 +6,7 @@ import firebase from '../firebase/clientApp'
 
 export default function Home() {
   // Our custom hook to get context values
-  const { loadingUser, user } = useUser()
+  const { loadingUser, user, login } = useUser()
 
   const profile = { username: 'nextjs_user', message: 'Awesome!!' }
 
@@ -18,12 +18,6 @@ export default function Home() {
     // You also have your firebase app initialized
     // console.log('firebase', firebase)
   }, [loadingUser, user])
-
-  const createUser = async () => {
-    const db = firebase.firestore()
-    await db.collection('profile').doc(profile.username).set(profile)
-    alert('User created!!')
-  }
 
   return (
     <div className="container">
@@ -42,6 +36,11 @@ export default function Home() {
         <Link href={`/users`} passHref>
           <a>Users</a>
         </Link>        
+        
+        <a href="#" disabled={!user || user && user.isAnonymous} onClick={() => !user.isAnonymous && login()}>Login anonymously</a>
+        
+        {/* NOTE: NEED UX TO EXPLAIN POP-UP */}
+        <a href="#" disabled={!user || user && user.provider === 'google.com'} onClick={() => user.provider !== 'google.com' && login('google')}>Login via google</a>
       </main>
 
       <style jsx>{`
@@ -90,6 +89,12 @@ export default function Home() {
         a {
           color: blue;
           font-size: 1.5em;
+          cursor: pointer;
+        }
+
+        a[disabled] {
+          color: grey;
+          cursor: auto;
         }
 
         .title a {

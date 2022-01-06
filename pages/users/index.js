@@ -32,6 +32,9 @@ export default function Page() {
               <Link href={`/users/${user.id}`} passHref>
                 <a>{ user.id }</a>
               </Link>
+              { (user.isAnonymous || user.provider) && 
+                ` (${user.isAnonymous && 'anonymous' || ''}${user.provider && `${user.isAnonymous && ' ' || ''}via ${user.provider}` || ''})`
+              }
             </li>        
           )}
         </ul>
