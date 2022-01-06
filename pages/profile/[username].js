@@ -7,7 +7,6 @@ import { getProfileData } from '../../fetchData/getProfileData'
 export default function CSRPage() {
   const router = useRouter()
   const { username } = router.query
-  // console.log('CSRPage', router.query) 
   const [user, setUser] = useState({})
 
   useEffect(() => {
