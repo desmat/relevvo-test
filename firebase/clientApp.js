@@ -1,9 +1,6 @@
 import firebase from 'firebase/app'
-import 'firebase/auth' // If you need it
-import 'firebase/firestore' // If you need it
-// import 'firebase/storage' // If you need it
-// import 'firebase/analytics' // If you need it
-// import 'firebase/performance' // If you need it
+import 'firebase/auth'
+import 'firebase/firestore'
 
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,7 +10,7 @@ const clientCredentials = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   // measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-}
+} 
 
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials)

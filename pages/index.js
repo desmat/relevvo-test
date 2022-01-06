@@ -28,26 +28,17 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Next.js w/ Firebase Client-Side</title>
+        <title>Next.js w/ Firebase App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="title">Next.js w/ Firebase Client-Side</h1>
-        <p className="description">Fill in your credentials to get started</p>
+        <h1 className="title">Next.js w/ Firebase App</h1>
 
-        <p className="description">
-          Cloud Firestore Security Rules write permissions are required for
-          adding users
-        </p>
-        <button onClick={createUser}>Create 'nextjs_user'</button>
-
-        <p className="description">
-          Please press the link below after adding the user
-        </p>
-        <Link href={`/profile/${profile.username}`} passHref>
-          <a>Go to CSR Page</a>
+        <Link href={`/stores`} passHref>
+          <a>Stores</a>
         </Link>
+       
       </main>
 
       <style jsx>{`
@@ -61,11 +52,11 @@ export default function Home() {
         }
 
         main {
-          padding: 5rem 0;
+          padding: 1rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: start;
           align-items: center;
         }
 
@@ -111,8 +102,8 @@ export default function Home() {
 
         .title {
           margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
+          font-size: 2rem;
+          line-height: 2;
         }
 
         .title,
