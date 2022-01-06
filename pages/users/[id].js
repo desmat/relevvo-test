@@ -12,12 +12,8 @@ export default function Page() {
   useEffect(() => {
     if (id) {
       getUser(id).then((user) => {
-        if (!user) {
-          setUser({ notFound: true })
-        }
-
         setUser({ ...user, loaded: true })
-      })
+      }).catch(console.error)
     }
   }, [])
 

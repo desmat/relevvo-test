@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-
-import { getUsers, saveUser } from '../../fetchData/users'
+import { getUsers } from '../../fetchData/users'
 
 export default function Page() {
   const [users, setUsers] = useState([])
@@ -37,8 +36,6 @@ export default function Page() {
           )}
         </ul>
       </main>
-
-      <p><a style={{ cursor: 'pointer' }} onClick={() => saveUser({ r: Math.floor(Math.random() * 100) })}>ADD</a></p>
 
       <Link href="/" passHref>
         <a>Home</a>

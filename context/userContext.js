@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import firebase from '../firebase/clientApp'
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth'
+import { saveUser } from '../fetchData/users'
 
 export const UserContext = createContext()
 
@@ -8,17 +9,20 @@ export default function UserContextComp({ children }) {
   const [loadingUser, setLoadingUser] = useState(true) // Helpful, to update the UI accordingly.
 
   useEffect(() => {
+    const auth = getAuth()
+
     // Listen authenticated user
-    const unsubscriber = firebase.auth().onAuthStateChanged(async (user) => {
+    const unsubscriber = onAuthStateChanged(auth, (user) => {
       try {
         if (user) {
           // User is signed in.
           console.log('User authenticated', user.uid)
-          const { uid, displayName, email, photoURL } = user
+          const { uid, displayName, email, photoURL, isAnonymous } = user
+          saveUser({ uid, displayName, email, photoURL, isAnonymous }, uid)
 
           // You could also look for the user doc in your Firestore (if you have one):
           // const userDoc = await firebase.firestore().doc(`users/${uid}`).get()
-          setUser({ uid, displayName, email, photoURL })
+          setUser({ uid, displayName, email, photoURL, isAnonymous })
         } else {
           setUser(null)
         }
@@ -31,7 +35,7 @@ export default function UserContextComp({ children }) {
     })
 
     // Authenticate anoymously
-    firebase.auth().signInAnonymously()
+    signInAnonymously(auth)
       .then(() => {
         // // Signed in..
         console.log('Signed in anonymously')
