@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useUser } from '../../context/userContext'
-import { getStore, addLike } from '../../fetchData/stores'
-import * as utils from '../../fetchData/utils'
+import { getStore, addLike } from '../../api/stores'
+import * as utils from '../../api/utils'
 
 export default function Page() {
   const router = useRouter()

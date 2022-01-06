@@ -2,8 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { getUser, saveUser } from '../../fetchData/users'
-import * as utils from '../../fetchData/utils'
+import { getUser, saveUser } from '../../api/users'
+import * as utils from '../../api/utils'
 
 export default function Page() {
   const router = useRouter()

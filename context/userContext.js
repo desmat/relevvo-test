@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react'
 import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { saveUser } from '../fetchData/users'
+import { saveUser } from '../api/users'
 
 export const UserContext = createContext()
 

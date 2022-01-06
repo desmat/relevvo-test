@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useUser } from '../../context/userContext'
-import { getStores } from '../../fetchData/stores'
-import { saveUserLocation } from '../../fetchData/users'
-import * as utils from '../../fetchData/utils'
+import { getStores } from '../../api/stores'
+import { saveUserLocation } from '../../api/users'
+import * as utils from '../../api/utils'
 
 export default function Page() {
   const [stores, setStores] = useState([])
