@@ -12,14 +12,14 @@ const clientCredentials = {
   // measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 } 
 
-  export const app = firebase.initializeApp(clientCredentials)
-  export const db = firestore.getFirestore()
+export const app = firebase.initializeApp(clientCredentials)
+export const db = firestore.getFirestore()
 
-  // Check that `window` is in scope for the analytics module!
-  // if (typeof window !== 'undefined') {
-  //   // Enable analytics. https://firebase.google.com/docs/analytics/get-started
-  //   if ('measurementId' in clientCredentials && process.env.NODE_ENV !== 'development') {
-  //     firebase.analytics()
-  //     firebase.performance()
-  //   }
-  // }
+// Check that `window` is in scope for the analytics module!
+// if (typeof window !== 'undefined') {
+//   // Enable analytics. https://firebase.google.com/docs/analytics/get-started
+//   if ('measurementId' in clientCredentials && process.env.NODE_ENV !== 'development') {
+//     firebase.analytics()
+//     firebase.performance()
+//   }
+// }

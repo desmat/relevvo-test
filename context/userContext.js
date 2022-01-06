@@ -18,11 +18,11 @@ export default function UserContextComp({ children }) {
           // User is signed in.
           console.log('User authenticated', user.uid)
           const { uid, displayName, email, photoURL, isAnonymous } = user
-          saveUser({ uid, displayName, email, photoURL, isAnonymous }, uid)
 
-          // You could also look for the user doc in your Firestore (if you have one):
-          // const userDoc = await firebase.firestore().doc(`users/${uid}`).get()
-          setUser({ uid, displayName, email, photoURL, isAnonymous })
+          saveUser({ uid, displayName, email, photoURL, isAnonymous }, uid).then((savedUser) => {
+            // console.log('UserContextComp useEffect saveUser success', { user })
+            setUser(savedUser)
+          }).catch((error) => console.warning('Error saving user data', error))
         } else {
           setUser(null)
         }

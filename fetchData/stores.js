@@ -4,7 +4,7 @@ import * as firebase from '../firebase/clientApp'
 const COLLECTION_NAME = 'stores'
 
 export const getStore = (id) => {
-  console.log('getStore', { id } )
+  // console.log('getStore', { id } )
   
   return new Promise((resolve, reject) => {
     firestore.getDoc(firestore.doc(firebase.db, COLLECTION_NAME, id)).then((doc) => {
@@ -19,7 +19,7 @@ export const getStore = (id) => {
 
 
 export const addLike = async (id) => {
-  console.log('addLike', { id } )
+  // console.log('addLike', { id } )
 
   return new Promise((resolve, reject) => {
     if (id) {
@@ -45,7 +45,7 @@ export const addLike = async (id) => {
 }
 
 export const getStores = (onUpdate) => {
-  console.log('getStores')
+  // console.log('getStores')
   const collection = firestore.collection(firebase.db, COLLECTION_NAME)
 
   const cleanup = firestore.onSnapshot(collection, (rs) => {

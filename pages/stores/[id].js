@@ -2,11 +2,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import { useUser } from '../../context/userContext'
 import { getStore, addLike } from '../../fetchData/stores'
+import * as utils from '../../fetchData/utils'
 
 export default function Page() {
   const router = useRouter()
   const { id } = router.query
+  const { loadingUser, user } = useUser()
   const [store, setStore] = useState({})
 
   const like = () => {
@@ -26,7 +29,8 @@ export default function Page() {
           setStore({ notFound: true })
         }
 
-        setStore({ ...s, loaded: true })
+        const distance = s.location && user && user.location && utils.calcDistance(s.location, user.location)
+        setStore({ ...s, distance, loaded: true })
       })
     }
   }, [])
@@ -47,6 +51,9 @@ export default function Page() {
               </li>
             <li>
               <b>likes:</b> {store.likes || 0}
+            </li>
+            <li>
+              <b>location:</b> {store.location && utils.locationToArray(store.location).toString()}{store.location && user && user.location ? ` (${utils.formatDistance(utils.calcDistance(store.location, user.location))} away)` : ''}
             </li>
           </ul>      
         }   

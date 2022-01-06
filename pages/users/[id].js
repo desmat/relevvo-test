@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { getUser, saveUser } from '../../fetchData/users'
+import * as utils from '../../fetchData/utils'
 
 export default function Page() {
   const router = useRouter()
@@ -26,13 +27,16 @@ export default function Page() {
 
       <main>
         <h1 className="title">User</h1>
-        <ul>
-          { user.loaded && 
+        { user.loaded && 
+          <ul>
             <li>
               <b>id:</b> {user.id}
             </li>
-          }   
-        </ul>      
+            <li>
+              <b>location:</b> {user.location && `${utils.locationToArray(user.location)}`}
+            </li>
+          </ul>      
+        }   
       </main>
 
       <p><a style={{ cursor: 'pointer' }} onClick={() => saveUser({ r: Math.floor(Math.random() * 100) }, user.id)}>UPDATE</a></p>
