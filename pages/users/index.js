@@ -3,15 +3,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
-import { getStores } from '../../fetchData/stores'
+import { getUsers, saveUser } from '../../fetchData/users'
 
 export default function Page() {
-  const [stores, setStores] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    const cleanup = getStores((stores) => {
-      console.log('stores', stores)
-      setStores(stores)
+    const cleanup = getUsers((users) => {
+      console.log('users', users)
+      setUsers(users)
     })
 
     return cleanup
@@ -20,23 +20,25 @@ export default function Page() {
   return ( 
     <div className="container">
       <Head>
-        <title>Stores</title>
+        <title>Users</title>
         <link rel="icon" href="/favicon.ico" />
       </Head> 
 
       <main>
-        <h1 className="title">Stores</h1>
+        <h1 className="title">Users</h1>
 
         <ul>
-          { stores.map((store) =>
-            <li key={store.id}>
-              <Link href={`/stores/${store.id}`} passHref>
-                <a>{ store.name }</a>
+          { users.map((user) =>
+            <li key={user.id}>
+              <Link href={`/users/${user.id}`} passHref>
+                <a>{ user.id }</a>
               </Link>
             </li>        
           )}
         </ul>
       </main>
+
+      <p><a style={{ cursor: 'pointer' }} onClick={() => saveUser({ r: Math.floor(Math.random() * 100) })}>ADD</a></p>
 
       <Link href="/" passHref>
         <a>Home</a>

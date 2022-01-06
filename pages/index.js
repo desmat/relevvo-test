@@ -38,7 +38,10 @@ export default function Home() {
         <Link href={`/stores`} passHref>
           <a>Stores</a>
         </Link>
-       
+        
+        <Link href={`/users`} passHref>
+          <a>Users</a>
+        </Link>        
       </main>
 
       <style jsx>{`

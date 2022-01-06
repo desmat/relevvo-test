@@ -2,21 +2,21 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { getStore } from '../../fetchData/stores'
+import { getUser, saveUser } from '../../fetchData/users'
 
 export default function Page() {
   const router = useRouter()
   const { id } = router.query
-  const [store, setStore] = useState({})
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     if (id) {
-      getStore(id).then((s) => {
-        if (!s) {
-          setStore({ notFound: true })
+      getUser(id).then((user) => {
+        if (!user) {
+          setUser({ notFound: true })
         }
 
-        setStore({ ...s, loaded: true })
+        setUser({ ...user, loaded: true })
       })
     }
   }, [])
@@ -29,17 +29,19 @@ export default function Page() {
       </Head>
 
       <main>
-        <h1 className="title">Store</h1>
+        <h1 className="title">User</h1>
         <ul>
-          { store.loaded && 
+          { user.loaded && 
             <li>
-              <b>name:</b> {store.name}
+              <b>id:</b> {user.id}
             </li>
           }   
         </ul>      
       </main>
 
-      <Link href="/stores" passHref>
+      <p><a style={{ cursor: 'pointer' }} onClick={() => saveUser({ r: Math.floor(Math.random() * 100) }, user.id)}>UPDATE</a></p>
+
+      <Link href="/users" passHref>
         <a>Back</a>
       </Link>      
 
