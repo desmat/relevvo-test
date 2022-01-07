@@ -29,7 +29,7 @@ This application is currently deployed on Vercel and configured to run against a
 3. `npm run dev`
 
 
-## Debate question: UI compoenent frameworks (ex MUI) vs CSS frameworks (ex Bootstrap) vs hand-coded
+## Debate question: UI component frameworks (ex MUI) vs CSS frameworks (ex Bootstrap) vs hand-coded
 
 When it comes to building the actual UI for a web-app there are any approaches available and I'd like to offer a short discusison on the pros/cons of the three main approaches
 
