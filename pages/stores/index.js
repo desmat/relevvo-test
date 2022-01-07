@@ -55,17 +55,16 @@ function StoresPage() {
       setStores(stores.map(addDistanceToStore))
     })
 
-    // try to get and save user location
-    // NOTE let's build some smoother UX about getting location, why and failing
-    const options = {} // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition#syntax
-    navigator.geolocation.getCurrentPosition((pos) => {
-      // console.log('getCurrentPosition success', pos)
-      if (!loadingUser && user) {
-        saveUserLocation(pos.coords, user.uid)
-      }
-    }, (error) => {
-      console.warn('getCurrentPosition error', error)
-    }, [options])
+    // // try to get and save user location
+    // const options = {} // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition#syntax
+    // navigator.geolocation.getCurrentPosition((pos) => {
+    //   // console.log('getCurrentPosition success', pos)
+    //   if (!loadingUser && user) {
+    //     saveUserLocation(pos.coords, user.uid)
+    //   }
+    // }, (error) => {
+    //   console.warn('getCurrentPosition error', error)
+    // }, [options])
 
     return cleanup
   }, [])
