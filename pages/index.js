@@ -51,7 +51,7 @@ export default function Home() {
                 />             */}
                 <mui.Typography sx={{ padding: 1 }}>
                   This is my submission for the Revevvo Engineering Test, specifically the front-end variation. 
-                  It aims to demostrate competency with Javacript, React, cloud technologies such as Firebase 
+                  It aims to demonstrate competency with Javacript, React, cloud technologies such as Firebase 
                   and Vercel, and other tools used in every-day full-stack engineering.                
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}> 
@@ -67,7 +67,6 @@ export default function Home() {
                   with different access rights and user experiences. For example a Vendor might
                   publish a promotion for Customers to discover, share meta data about and possibly register usage.
                 </mui.Typography>
-
               </mui.Card>
             </mui.Box>
 
@@ -86,6 +85,24 @@ export default function Home() {
                   A User can also publish new Stores along with GPS coordinate (hint: grab those from the google maps url).
                   In a more complete application a mapping API would be used to assist the User in finding businesses and 
                   obtaining those GPS coordinates.
+                </mui.Typography>
+              </mui.Card>
+            </mui.Box>
+
+            <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
+              <mui.Card variant="outlined" sx={{ padding: 2 }}>
+                <mui.CardHeader
+                  sx={{ color: 'text.secondary'}}
+                  title="Entities"
+                />            
+                <mui.Typography sx={{ padding: 1 }}>
+                  <b>Stores</b>: Name, GPS location and other information published by Users. 
+                  Also holds additional meta-information contributed by others, in this case Like's. 
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}>
+                  <b>Users</b>: Actors of the application. Holds information related to Authentication and Location.
+                  Not much of this data is currently surfaced in this demo but showing User's names and profile pics, 
+                  Store ownership, current location, and similar features would be easy to implement.
                 </mui.Typography>
               </mui.Card>
             </mui.Box>
