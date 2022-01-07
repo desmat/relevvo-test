@@ -8,7 +8,7 @@ import * as utils from '../../api/utils'
 
 import * as mui from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
-// import AddIcon from '@mui/icons-material/Add'
+import AddIcon from '@mui/icons-material/Add'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 
 const fabStyle = {
@@ -140,9 +140,11 @@ function StoresPage() {
         </mui.Fab>
       </Link>      
 
-      {/* <mui.Fab sx={fabStyle} aria-label="Add" color="primary">
-        <AddIcon />
-      </mui.Fab> */}
+      <Link href="/stores/new" passHref>
+        <mui.Fab size="small" sx={fabStyle} aria-label="Add" color="primary">
+          <AddIcon />
+        </mui.Fab>
+      </Link>        
     </mui.Container>
   )
 }
