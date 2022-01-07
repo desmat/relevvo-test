@@ -35,7 +35,7 @@ export const saveUser = async (data, id) => {
 
         firestore.updateDoc(firestore.doc(firebase.db, COLLECTION_NAME, id), updatedData).then(() => {
           updatedData.id = id
-          updated: firestore.serverTimestamp(),
+          updatedData.updated = firestore.serverTimestamp()
           resolve({ ...doc.data(), ...updatedData })
         }).catch((error) => reject(`Error saving user ${id}: ${error}`))
       } else {
@@ -46,7 +46,7 @@ export const saveUser = async (data, id) => {
 
         firestore.setDoc(firestore.doc(firebase.db, COLLECTION_NAME, id), updatedData).then(() => {
           updatedData.id = id
-          created: firestore.serverTimestamp(),
+          updatedData.created = firestore.serverTimestamp()
           resolve(updatedData)
         }).catch((error) => reject(`Error saving user ${id}: ${error}`))
       }

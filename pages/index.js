@@ -2,198 +2,188 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { useUser } from '../context/userContext'
-import firebase from '../firebase/clientApp'
+import { saveUserLocation } from '../api/users'
+import * as utils from '../api/utils'
+
+import * as mui from '@mui/material'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import MapIcon from '@mui/icons-material/Map';
 
 export default function Home() {
   // Our custom hook to get context values
-  const { loadingUser, user, login } = useUser()
+  const { loadingUser, user, setUser, login } = useUser()
 
-  const profile = { username: 'nextjs_user', message: 'Awesome!!' }
-
-  useEffect(() => {
-    if (!loadingUser) {
-      // You know that the user is loaded: either logged in or out!
-      console.log('user', user)
-    }
-    // You also have your firebase app initialized
-    // console.log('firebase', firebase)
-  }, [loadingUser, user])
+  const findCurrentLocation = () => {
+    // try to get and save user location
+    const options = {} // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition#syntax
+    navigator.geolocation.getCurrentPosition((pos) => {
+      console.log('getCurrentPosition success', pos)
+      if (user) {
+        saveUserLocation(pos.coords, user.uid).then((user) => {
+          console.log('getCurrentPosition saveUserLocation success', { user } )
+          setUser(user)
+        })        
+      }
+    }, (error) => {
+      console.warn('getCurrentPosition error', error)
+    }, [options])
+  }
 
   return (
-    <div className="container">
+    <mui.Container>
       <Head>
-        <title>Next.js w/ Firebase App</title>
+        <title>Relevvo Engineering Test</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> 
 
-      <main>
-        <h1 className="title">Next.js w/ Firebase App</h1>
+      <mui.Container align="center">
+        <mui.Typography variant="h3" align="center" gutterBottom>
+          Relevvo Engineering Test
+        </mui.Typography>
 
-        <Link href={`/stores`} passHref>
-          <a>Stores</a>
-        </Link>
-        
-        <Link href={`/users`} passHref>
-          <a>Users</a>
-        </Link>        
-        
-        <a href="#" disabled={!user || user && user.isAnonymous} onClick={() => !user.isAnonymous && login()}>Login anonymously</a>
-        
-        {/* NOTE: NEED UX TO EXPLAIN POP-UP */}
-        <a href="#" disabled={!user || user && user.provider === 'google.com'} onClick={() => user.provider !== 'google.com' && login('google')}>Login via google</a>
-      </main>
+        <mui.Container align="center">
+          <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
+              <mui.Card variant="outlined" sx={{ padding: 2 }}>
+                {/* <mui.CardHeader
+                  sx={{ color: 'text.secondary'}}
+                  title="About"
+                />             */}
+                <mui.Typography sx={{ padding: 1 }}>
+                  This is my submission for the Revevvo Engineering Test, specifically the front-end variation. 
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+                  It aims demostrate competency with Javacript, React, cloud technologies such as Firebase, Firestore 
+                  and Vercel and other tools used in every-day full-stack engineering.                
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}> 
+                  See full test instructions here: <a href="<https://github.com/relevvo/relevvo-test">https://github.com/relevvo/relevvo-test</a>
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}>
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}>
+                  This demo application shows what a Yelp-like geo-aware application might do: 
+                  Users saving and publishing information about their favorite shops, discovering and learning about shops closeby, 
+                  and contributing meta information to those entities, in this case simply recording a 'Like'.
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}> 
+                  A more complete version might allow Vendor and Customer user types to interact with each other, 
+                  with different types having different access rights and user experiences. For example a Vendor might
+                  publish a coupon or promotion and users could discover, share meta data about and possibly register 
+                  usage of said coupons/promotions.
+                </mui.Typography>
 
-        main {
-          padding: 1rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: start;
-          align-items: center;
-        }
+              </mui.Card>
+            </mui.Box>
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+            <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
+              <mui.Card variant="outlined" sx={{ padding: 2 }}>
+                <mui.CardHeader
+                  sx={{ color: 'text.secondary'}}
+                  title="Instruction"
+                />            
+                <mui.Typography sx={{ padding: 1 }}>
+                  Current UX flow involves the User starting the application, logging in via Google, recording their 
+                  location, browsing to the list of stores to find closest existing stores, viewing details, registering Like's
+                  and obtaininig mapping/navigation details. 
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}>
+                  A User can also publish new stores along with GPS coordinate (hint: grab those from the google maps url).
+                  In a more complete application a mapping API would be used to assist the user in finding businesses and 
+                  obtaining those GPS coordinates.
+                </mui.Typography>
+              </mui.Card>
+            </mui.Box>
 
-        footer img {
-          margin-left: 0.5rem;
-        }
+            <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
+              <mui.Card variant="outlined" sx={{ padding: 2 }}>
+                <mui.CardHeader
+                  sx={{ color: 'text.secondary'}}
+                  title="Auth, Geo and main functionality"
+                />            
 
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+              <mui.Typography sx={{ padding: 1 }}> 
+                <b>Main functionality</b>
+                <br/>
+                <Link href={`/stores`} passHref>
+                  <a>View list of Stores</a>
+                </Link>
+                <br/>
+                (This would be the main page of the app)
+                <br/>
+                {/* <Link href={`/users`} passHref>
+                    <a>View list of Users</a>
+                </Link> */}
+              </mui.Typography>
 
-        button {
-          font-size: 1.5em;
-          margin: 1em 0;
-        }
+              <mui.Typography sx={{ padding: 2 }}>
+                <b>
+                  Auth status: 
+                  {user && user && user.provider === 'google.com' &&
+                    ` Logged in via google`
+                  }
+                  {!user && 
+                    ` Not logged in`
+                  }
+                  {user && user && user.isAnonymous && 
+                    ` Anonymous`
+                  }
+                </b>
 
-        a {
-          color: blue;
-          font-size: 1.5em;
-          cursor: pointer;
-        }
+                <br/>
+                <mui.Button 
+                  variant="text" 
+                  size="small"
+                  disabled={!user || user && user.isAnonymous}  
+                  onClick={() => !user.isAnonymous && login()}
+                >
+                  Login anonymously
+                </mui.Button>
 
-        a[disabled] {
-          color: grey;
-          cursor: auto;
-        }
+                <br/>
+                <mui.Button 
+                  variant="text" 
+                  size="small"
+                  disabled={!user || user && user.provider === 'google.com'}
+                  onClick={() => user.provider !== 'google.com' && login('google')}
+                >
+                  Login via google
+                </mui.Button>
 
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
+                <br/>
+                (Enable pop-ups)
+              </mui.Typography>
 
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
+              <mui.Typography sx={{ padding: 2 }}>          
+                <b>
+                  Current location: 
+                  {user && user.location &&
+                    ` ${utils.locationToArray(user.location).toString()}`
+                  }
+                  {!(user && user.location) &&
+                    ` Unknown`
+                  }
+                </b>
 
-        .title {
-          margin: 0;
-          font-size: 2rem;
-          line-height: 2;
-        }
+                <br/>
+                <mui.Button 
+                  variant="text" 
+                  size="small"
+                  onClick={findCurrentLocation}
+                >
+                  Set current location
+                </mui.Button>
 
-        .title,
-        .description {
-          text-align: center;
-        }
+                <br/>
+                (Grant browser's request for location)
+              </mui.Typography>
+              
+            </mui.Card>
+          </mui.Box>
 
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
 
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+        </mui.Container>
+      </mui.Container>
+    </mui.Container>
   )
+
 }

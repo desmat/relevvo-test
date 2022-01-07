@@ -17,7 +17,6 @@ export const getStore = (id) => {
   })
 }
 
-
 export const addLike = async (id) => {
   // console.log('addLike', { id } )
 
@@ -41,6 +40,26 @@ export const addLike = async (id) => {
     } else {
       reject(`Error saving store ${id}: not found`)
     }
+  })
+}
+
+export const saveStore = async (data) => {
+  // console.log('saveStore', { id, data } )
+
+  // TODO edit also
+
+  return new Promise((resolve, reject) => {
+    const updatedData = { 
+      ...data, 
+      created: firestore.serverTimestamp(),
+    }
+
+    firestore.addDoc(firestore.collection(firebase.db, COLLECTION_NAME), updatedData).then((ref) => {
+      // console.log('saveStore success', { ref })
+      updatedData.id = ref.id
+      updatedData.created = firestore.serverTimestamp()
+      resolve(updatedData)
+    }).catch((error) => reject(`Error saving store ${id}: ${error}`))
   })
 }
 
