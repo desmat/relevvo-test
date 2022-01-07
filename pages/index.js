@@ -43,7 +43,7 @@ export default function Home() {
         </mui.Typography>
 
         <mui.Container align="center">
-          <mui.Box sx={{ minWidth: 275, maxWidth: 600, padding: 1 }}>
+          <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
               <mui.Card variant="outlined" sx={{ padding: 2 }}>
                 {/* <mui.CardHeader
                   sx={{ color: 'text.secondary'}}
@@ -52,9 +52,8 @@ export default function Home() {
                 <mui.Typography sx={{ padding: 1 }}>
                   This is my submission for the Revevvo Engineering Test, specifically the front-end variation. 
 
-                  It aims demostrate competency Javacript, React (Next.js specifically), 
-                  cloud technologies such as Firebase, Firestore and Vercel and misc. other tools used in every-day 
-                  full-stack engineering.                
+                  It aims demostrate competency with Javacript, React, cloud technologies such as Firebase, Firestore 
+                  and Vercel and other tools used in every-day full-stack engineering.                
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}> 
                   See full test instructions here: <a href="<https://github.com/relevvo/relevvo-test">https://github.com/relevvo/relevvo-test</a>
@@ -63,12 +62,11 @@ export default function Home() {
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}>
                   This demo application shows what a Yelp-like geo-aware application might do: 
-                  Users saving saving and publishing information about their favorite shops, browsing 
-                  other previously published stores, and adding information to those entities, in this case 
-                  simply recording a 'Like'.
+                  Users saving and publishing information about their favorite shops, discovering and learning about shops closeby, 
+                  and contributing meta information to those entities, in this case simply recording a 'Like'.
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}> 
-                  A more complete version might allow Vendor and Customer Users types to interact with each other, 
+                  A more complete version might allow Vendor and Customer user types to interact with each other, 
                   with different types having different access rights and user experiences. For example a Vendor might
                   publish a coupon or promotion and users could discover, share meta data about and possibly register 
                   usage of said coupons/promotions.
@@ -77,7 +75,7 @@ export default function Home() {
               </mui.Card>
             </mui.Box>
 
-            <mui.Box sx={{ minWidth: 275, maxWidth: 600, padding: 1 }}>
+            <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
               <mui.Card variant="outlined" sx={{ padding: 2 }}>
                 <mui.CardHeader
                   sx={{ color: 'text.secondary'}}
@@ -89,13 +87,14 @@ export default function Home() {
                   and obtaininig mapping/navigation details. 
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}>
-                  A User could also publish new stores along with GPS coordinate. In a complete application a mapping API
-                  would be used to assist the user in obtaining those coordinates 
+                  A User can also publish new stores along with GPS coordinate (hint: grab those from the google maps url).
+                  In a more complete application a mapping API would be used to assist the user in finding businesses and 
+                  obtaining those GPS coordinates.
                 </mui.Typography>
               </mui.Card>
             </mui.Box>
 
-            <mui.Box sx={{ minWidth: 275, maxWidth: 600, padding: 1 }}>
+            <mui.Box sx={{ minWidth: 275, maxWidth: 800, padding: 1 }}>
               <mui.Card variant="outlined" sx={{ padding: 2 }}>
                 <mui.CardHeader
                   sx={{ color: 'text.secondary'}}
@@ -175,7 +174,7 @@ export default function Home() {
                 </mui.Button>
 
                 <br/>
-                (Access browser's request)
+                (Grant browser's request for location)
               </mui.Typography>
               
             </mui.Card>
