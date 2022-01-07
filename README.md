@@ -27,3 +27,67 @@ This application is currently deployed on Vercel and configured to run against a
 1. Clone this project to a local dir
 2. Configure `.env.local` as described above
 3. `npm run dev`
+
+
+## Debate question: UI compoenent frameworks (ex MUI) vs CSS frameworks (ex Bootstrap) vs hand-coded
+
+When it comes to building the actual UI for a web-app there are any approaches available and I'd like to offer a short discusison on the pros/cons of the three main approaches
+
+### UI Components
+
+For example, https://mui.com/ is a framework that provides a compehensive and exhausive set of fully-cooked components to be used directly in a React project. Other similar frameworks exist but this one is the most mature and popular.
+
+Pros: 
+- Very high quality components
+- Consistent look and feel across the board
+- Faster development time for the majority of cases
+- Good documentation
+- Appealing to the common React developer
+- Not much fiddling with CSS
+
+Cons:
+- Highly opinionated 
+- Hard to customize (all apps look the same)
+- Learning curve
+
+Bottom line is that for React engineers this approach will be most suited when building up clean apps that look and feel like the framework wants. Can get away without a designer.
+
+### CSS Frameworks
+
+For example https://getbootstrap.com/, this is a different approach from above where instead of working with code we're hand-writing html structure and attaching CSS classes to compose look and behavior.
+
+Pros:
+- High quality CSS
+- Consistent look but not so much behavior
+- Reduced fiddling with CSS
+- Quick to pick up and become productive
+- Can be customised (to some extent)
+- Easy to break out of the framework when needed
+
+Cons:
+- Highly opinionated 
+- Engineers still have to deal wth HTML and all its idiosyncrasies 
+- Possible to customise but often stuck with lots of the defauls
+- Big project sizes
+
+Bottom line is that more front-end oriented developers will feel start with a high degree of experience of HTML and CSS and will be well equiped to leaverage these frameworks. They WILL however need to put in some work to cook up more structural UI.
+
+### Home-made CSS
+
+This is basically starting from scratch. 
+
+Pros:
+- No opinions, no "burden" to carry
+- No need to fight with any framework
+- Can satisfy detailed designs
+
+Cons:
+- WAY more work to get going
+- If not done properly a project can become very messy
+- HTML/CSS complexity is exposed to all engineers
+
+This approach _may_ be chosen when a team requires complete control over look and feel, _and_ is well equiped with Designers and experienced Front-end Engineers. There are many good and vastly more bad approaches on building a full UI with CSS from scratch and so the right descisions made upfront will save serious pain later.
+
+If going down this road, I would recommend following the basic approach used in CSS framework to build a good library of _atomic_, _portable_ and _composable_ classes, along with highly tested components in code to avoid the entire Engineering team to be burdened with CSS fatigue.
+
+Starter projects can be leaveraged instead of starting completely from stratch, notably https://tailwindcss.com/

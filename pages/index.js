@@ -56,7 +56,7 @@ export default function Home() {
                   and Vercel and other tools used in every-day full-stack engineering.                
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}> 
-                  See full test instructions here: <a href="<https://github.com/relevvo/relevvo-test">https://github.com/relevvo/relevvo-test</a>
+                  See full test instructions here: <a href="https://github.com/relevvo/relevvo-test">https://github.com/relevvo/relevvo-test</a>
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}>
                 </mui.Typography>
