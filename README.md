@@ -1,47 +1,29 @@
-# Firebase Example
+# Relevvo Engineering Test
 
-This is a simple set up for Firebase for client side applications.
+This is my submission for the Revevvo Engineering Test, specifically the front-end variation. It aims demostrate competency with Javacript, React, cloud technologies such as Firebase, Firestore and Vercel and other tools used in every-day full-stack engineering.
 
-The firebase app is initialized in `firebase/clientApp.js`, to use you just have to import it anywhere in the app
+See full test instructions here: https://github.com/relevvo/relevvo-test
 
-The React Context API is used to provide user state.
+This demo application shows what a Yelp-like geo-aware application might do: Users saving and publishing information about their favorite shops, discovering and learning about shops closeby, and contributing meta information to those entities, in this case simply recording a 'Like'.
 
-## Deploy your own
+A more complete version might allow Vendor and Customer user types to interact with each other, with different types having different access rights and user experiences. For example a Vendor might publish a coupon or promotion and users could discover, share meta data about and possibly register usage of said coupons/promotions.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Deployed app
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-firebase&project-name=with-firebase&repository-name=with-firebase)
+https://relevvo-test.vercel.app/
 
-## How to use
+## What this app does
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Current UX flow involves the User starting the application, logging in via Google, recording their location, browsing to the list of stores to find closest existing stores, viewing details, registering Like's and obtaininig mapping/navigation details.
 
-```bash
-npx create-next-app --example with-firebase with-firebase-app
-# or
-yarn create next-app --example with-firebase with-firebase-app
-```
+A User can also publish new stores along with GPS coordinate (hint: grab those from the google maps url). In a more complete application a mapping API would be used to assist the user in finding businesses and obtaining those GPS coordinates.
 
 ## Configuration
 
-1. [Create a Firebase project](https://console.firebase.google.com/u/0/) and add a new app to it.
-2. Create a `.env.local` file and copy the contents of `.env.local.example` into it:
+This application is currently deployed on Vercel and configured to run against a Firebase back-end running from my own account. In order to run locally setup a Firestore database with `Stores` and `Users` collections, along with enabling both `Anonymous` and `Google` auth methods, copy/rename the file `.env.local.example` to `.env.local` and fill in the environmental vars. Alternatively I'm happy to provide configuration to connect to the existing Firebase back-end.
 
-```bash
-cp .env.local.example .env.local
-```
+ ## How to run locally
 
-3. Set each variable on `.env.local` with your Firebase Configuration (found in "Project settings").
-
-4. If you want to check the SSR page, get your account credentials from the Firebase console at _Project settings > Service accounts_, where you can click on _Generate new private key_ and download the credentials as a json file. Then set `FIREBASE_CLIENT_EMAIL` and `FIREBASE_PRIVATE_KEY` in `.env.local`
-
-## Deploy on Vercel
-
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-### Deploy Your Local Project
-
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
-
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
-
+1. Clone this project to a local dir
+2. Configure `.env.local` as described above
+3. `npm run dev`
