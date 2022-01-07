@@ -1,13 +1,29 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useUser } from '../../context/userContext'
 import { getStores } from '../../api/stores'
 import { saveUserLocation } from '../../api/users'
 import * as utils from '../../api/utils'
 
-export default function Page() {
+import * as mui from '@mui/material'
+import StarIcon from '@mui/icons-material/Star'
+// import AddIcon from '@mui/icons-material/Add'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+
+const fabStyle = {
+  position: 'fixed',
+  bottom: 16,
+  right: 16,
+}
+
+const backFabStyle = {
+  position: 'fixed',
+  top: 16,
+  left: 16,
+}
+
+function StoresPage() {
   const [stores, setStores] = useState([])
   const { loadingUser, user } = useUser()
 
@@ -35,7 +51,7 @@ export default function Page() {
 
   useEffect(() => {
     const cleanup = getStores((stores) => {
-      console.log('stores', stores)
+      // console.log('stores', stores)
       setStores(stores.map(addDistanceToStore))
     })
 
@@ -55,32 +71,80 @@ export default function Page() {
   }, [])
 
   return ( 
-    <div className="container">
+    <mui.Container>
       <Head>
         <title>Stores</title>
         <link rel="icon" href="/favicon.ico" />
       </Head> 
 
-      <main>
-        <h1 className="title">Stores</h1>
+      <mui.Container align="center">
+        <mui.Typography variant="h3" align="center" gutterBottom>
+          Stores Nearby
+        </mui.Typography>
 
-        <ul>
-          { stores.sort(sortStoresByLikes).sort(sortStoresByDistance).map((store) =>
-            <li key={store.id}>
-              <Link href={`/stores/${store.id}`} passHref>
-                <a>{ store.name }</a> 
-              </Link>
-              {store.distance && 
-                ` (${utils.formatDistance(store.distance)} away)`
-              }
-            </li>        
-          )}
-        </ul>
-      </main>
+        <mui.Container align="left" style={{ width: 'fit-content' }}>
+
+          <mui.List dense={false}>
+            {stores.sort(sortStoresByLikes).sort(sortStoresByDistance).map((store) => {
+              return (
+                <mui.ListItem 
+                  key={store.id}
+                  // secondaryAction={
+                  //   // <mui.IconButton edge="end" aria-label="delete">
+                  //   //   <Clear />
+                  //   // </mui.IconButton>
+                  //   <mui.IconButton edge="end" aria-label="edit">
+                  //     <Edit />
+                  //   </mui.IconButton>
+                  // }        
+                  disablePadding
+                  >
+
+                  <Link href={`/stores/${store.id}`} passHref>
+                    <mui.ListItemButton>
+                      {store.likes > 0 &&
+                        <mui.ListItemIcon>
+                          <StarIcon />
+                        </mui.ListItemIcon>                    
+                      }
+                      <mui.ListItemText
+                        sx={{ maxWidth: 600 }}
+                        inset={!store.likes}
+                        primary={store.name}
+                        secondary={store.distance && `${utils.formatDistance(store.distance)} away`}
+                      />
+                    </mui.ListItemButton>
+                  </Link>                
+                </mui.ListItem>
+              )    
+            })}
+          </mui.List>
+        </mui.Container>
+      </mui.Container>
+
+      {/* <mui.Container align="center">
+        <Link href="/" passHref>
+          <mui.Button 
+            component="a" 
+            color="primary"
+            variant="outlined"
+          >
+            Back
+          </mui.Button>
+        </Link>      
+      </mui.Container> */}
 
       <Link href="/" passHref>
-        <a>Home</a>
+        <mui.Fab size="small" variant="circular" sx={backFabStyle} aria-label="Back" color="inherit">
+          <ArrowBackIosNewIcon />
+        </mui.Fab>
       </Link>      
-    </div>
+
+      {/* <mui.Fab sx={fabStyle} aria-label="Add" color="primary">
+        <AddIcon />
+      </mui.Fab> */}
+    </mui.Container>
   )
 }
+
+export default StoresPage
