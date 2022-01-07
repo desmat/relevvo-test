@@ -3,20 +3,27 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useUser } from '../../context/userContext'
-import { getStore, addLike, saveStore} from '../../api/stores'
+import { getStore, addLike, saveStore, deleteStore } from '../../api/stores'
 import * as utils from '../../api/utils'
 
 import * as mui from '@mui/material'
 // import Edit from '@mui/icons-material/Edit'
+import Delete from '@mui/icons-material/Delete'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import MapIcon from '@mui/icons-material/Map';
 
 const NEW_STORE_ID = 'new'
 
-const fabStyle = {
+const editFabStyle = {
   position: 'fixed',
   bottom: 16,
+  right: 16,
+}
+const deleteFabStyle = {
+  position: 'fixed',
+  bottom: 16,
+  // right: 66,
   right: 16,
 }
 
@@ -42,6 +49,16 @@ export default function Page() {
     }
   }
 
+  const confirmDelete = () => {
+    if (store) {
+      if (confirm(`Delete store ${store.name}?`)) {
+        deleteStore(id).then(() => {
+          router.push(`/stores`)
+        }).catch(console.error)
+      }
+    }
+  }
+
   const saveNewStore = () => {
     const storeToSave = {
       name: store.newName,
@@ -52,6 +69,10 @@ export default function Page() {
         longitude: parseFloat(store.newLongitude),
         latitude: parseFloat(store.newLatitude),
       }
+    }
+
+    if (user) {
+      storeToSave.createdBy = user.id
     }
 
     // console.log('saveNewStore', { store, storeToSave })
@@ -232,9 +253,13 @@ export default function Page() {
         </mui.Fab>
       </Link>      
 
-      {/* <mui.Fab sx={fabStyle} aria-label="Add" color="primary">
+      {/* <mui.Fab size="small" sx={editFabStyle} aria-label="Add" color="primary">
         <Edit />
       </mui.Fab> */}
+
+      <mui.Fab onClick={confirmDelete} disabled={!user || store.createdBy !== user.id} size="small" sx={deleteFabStyle} aria-label="Add" color="secondary">
+        <Delete />
+      </mui.Fab>
 
     </mui.Container>
   )

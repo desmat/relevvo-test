@@ -16,6 +16,17 @@ export const getStore = (id) => {
     })
   })
 }
+export const deleteStore = (id) => {
+  // console.log('deleteStore', { id } )
+  
+  return new Promise((resolve, reject) => {
+    firestore.deleteDoc(firestore.doc(firebase.db, COLLECTION_NAME, id)).then((doc) => {
+      resolve()
+    }).catch((error) => {
+      reject(`Error deleting store ${id}: ${error}`)
+    })
+  })
+}
 
 export const addLike = async (id) => {
   // console.log('addLike', { id } )

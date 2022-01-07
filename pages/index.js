@@ -82,7 +82,10 @@ export default function Home() {
                   and obtaininig mapping/navigation details. 
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}>
-                  A User can also publish new Stores along with GPS coordinate (hint: grab those from the google maps url).
+                  A (logged in) User can also publish new Stores along with GPS coordinate (hint: grab those from the google maps url),
+                  and delete those Store entries that they themselves created.
+                </mui.Typography>
+                <mui.Typography sx={{ padding: 1 }}>
                   In a more complete application a mapping API would be used to assist the User in finding businesses and 
                   obtaining those GPS coordinates.
                 </mui.Typography>

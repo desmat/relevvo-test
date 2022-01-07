@@ -140,7 +140,7 @@ function StoresPage() {
       </Link>      
 
       <Link href="/stores/new" passHref>
-        <mui.Fab size="small" sx={fabStyle} aria-label="Add" color="primary">
+        <mui.Fab disabled={!user || user.isAnonymous} size="small" sx={fabStyle} aria-label="Add" color="primary">
           <AddIcon />
         </mui.Fab>
       </Link>        
