@@ -51,25 +51,21 @@ export default function Home() {
                 />             */}
                 <mui.Typography sx={{ padding: 1 }}>
                   This is my submission for the Revevvo Engineering Test, specifically the front-end variation. 
-
-                  It aims demostrate competency with Javacript, React, cloud technologies such as Firebase, Firestore 
-                  and Vercel and other tools used in every-day full-stack engineering.                
+                  It aims to demostrate competency with Javacript, React, cloud technologies such as Firebase 
+                  and Vercel, and other tools used in every-day full-stack engineering.                
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}> 
-                  See full test instructions here: <a href="https://github.com/relevvo/relevvo-test">https://github.com/relevvo/relevvo-test</a>
-                </mui.Typography>
-                <mui.Typography sx={{ padding: 1 }}>
+                  See test instructions here: <a href="https://github.com/relevvo/relevvo-test">https://github.com/relevvo/relevvo-test</a>
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}>
                   This demo application shows what a Yelp-like geo-aware application might do: 
                   Users saving and publishing information about their favorite shops, discovering and learning about shops closeby, 
-                  and contributing meta information to those entities, in this case simply recording a 'Like'.
+                  and contributing meta information related to those entities, in this case simply recording a 'Like'.
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}> 
-                  A more complete version might allow Vendor and Customer user types to interact with each other, 
-                  with different types having different access rights and user experiences. For example a Vendor might
-                  publish a coupon or promotion and users could discover, share meta data about and possibly register 
-                  usage of said coupons/promotions.
+                  A more complete version might allow Vendor and Customer User types to interact with each other, 
+                  with different access rights and user experiences. For example a Vendor might
+                  publish a promotion for Customers to discover, share meta data about and possibly register usage.
                 </mui.Typography>
 
               </mui.Card>
@@ -83,12 +79,12 @@ export default function Home() {
                 />            
                 <mui.Typography sx={{ padding: 1 }}>
                   Current UX flow involves the User starting the application, logging in via Google, recording their 
-                  location, browsing to the list of stores to find closest existing stores, viewing details, registering Like's
+                  location, browsing to the list of Stores to find closest existing Stores, viewing details, registering Like's
                   and obtaininig mapping/navigation details. 
                 </mui.Typography>
                 <mui.Typography sx={{ padding: 1 }}>
-                  A User can also publish new stores along with GPS coordinate (hint: grab those from the google maps url).
-                  In a more complete application a mapping API would be used to assist the user in finding businesses and 
+                  A User can also publish new Stores along with GPS coordinate (hint: grab those from the google maps url).
+                  In a more complete application a mapping API would be used to assist the User in finding businesses and 
                   obtaining those GPS coordinates.
                 </mui.Typography>
               </mui.Card>
